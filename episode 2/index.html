@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      body {
+        background-color: #eee;
+        max-width: 960px;
+        margin: 20px auto;
+      }
+      p,
+      h3,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+        background-color: #fff;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      li.fav {
+        background-color: #ff9ed2;
+        color: white;
+      }
+
+      .imgWidth {
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hi vue</h1>
+    <div id="app">
+      <!-- <a :href="url"> best website ever</a> -->
+      {{filteredBooks}}
+      <div v-if="showBooks">
+        <ul>
+          <li
+            @click="toggleFav(book)"
+            v-for="book in filteredBooks"
+            :class="{fav: book.isFav}"
+          >
+            <img class="imgWidth" :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
+      </div>
+
+      <button @click="toggleShowBooks">
+        <span v-if="showBooks">show books</span>
+        <span v-else>hide books</span>
+      </button>
+
+      <div v-show="showBooks">
+        <p>currently showing books</p>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
